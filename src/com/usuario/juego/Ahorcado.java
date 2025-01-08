@@ -1,12 +1,19 @@
+package src.com.usuario.juego;
 import java.util.Scanner;
 
 public class Ahorcado {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner lee = new Scanner(System.in);
 
+        
+        String user_word;
         // Palabra a adivinar
-        String palabra = "programacion";
-        char[] palabraOculta = new char[palabra.length()];
+        System.out.println("Escribe una palabra");
+        user_word = lee.nextLine();
+
+        
+        
+        char[] palabraOculta = new char[user_word.length()];
         for (int i = 0; i < palabraOculta.length; i++) {
             palabraOculta[i] = '_';
         }
@@ -20,12 +27,12 @@ public class Ahorcado {
             System.out.println("\nPalabra: " + String.valueOf(palabraOculta));
             System.out.println("Intentos restantes: " + intentos);
             System.out.print("Ingresa una letra: ");
-            char letra = scanner.nextLine().toLowerCase().charAt(0);
+            char letra = lee.nextLine().toLowerCase().charAt(0);
 
             // Verificar si la letra está en la palabra
             boolean acierto = false;
-            for (int i = 0; i < palabra.length(); i++) {
-                if (palabra.charAt(i) == letra) {
+            for (int i = 0; i < user_word.length(); i++) {
+                if (user_word.charAt(i) == letra) {
                     palabraOculta[i] = letra;
                     acierto = true;
                 }
@@ -37,15 +44,15 @@ public class Ahorcado {
             }
 
             // Verificar si se ha ganado o perdido
-            if (String.valueOf(palabraOculta).equals(palabra)) {
-                System.out.println("\n¡Felicidades! Has adivinado la palabra: " + palabra);
+            if (String.valueOf(palabraOculta).equals(user_word)) {
+                System.out.println("\n¡Felicidades! Has adivinado la palabra: " + user_word);
                 juegoTerminado = true;
             } else if (intentos == 0) {
-                System.out.println("\nTe has quedado sin intentos. La palabra era: " + palabra);
+                System.out.println("\nTe has quedado sin intentos. La palabra era: " + user_word);
                 juegoTerminado = true;
             }
         }
 
-        scanner.close();
+        lee.close();
     }
 }
